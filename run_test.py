@@ -286,6 +286,20 @@ def is_lex():
     return True
 
 
+def check_rule_perm(permutation, term1, term2):
+    j = 0
+    while j < len(term1) and j < len(term2):
+        if permutation.index(term1[j]) < permutation.index(term2[j]):
+            return False
+        elif term1[j] == term2[j]:
+            j += 1
+        elif permutation.index(term1[j]) > permutation.index(term2[j]):
+            return True
+    if len(term1) > len(term2):
+        return True
+    else:
+        return False
+
 
 def check_permutation(permutation, arr1, arr2):
     for i in range(len(arr1)):
@@ -326,23 +340,24 @@ if is_lex():
     # print(arr1)
     # print(arr2)
 
+    for permutation in permutations:
+        is_terminate = check_permutation(permutation, arr1, arr2)
+        if is_terminate:
+            with open("result", "w") as f:
+                # print("True")
+                f.write("True")
+            quit()
+    with open("result", "w") as f:
+        # print("Unknown")
+        f.write("Unknown")
+    quit()
+
+else:
+    with open("result", "w") as f:
+        # print("Unknown")
+        f.write("Unknown")
+    quit()
 
 
 
 
-
-# for rule1 in text:
-#     rule1 = rule1.strip()
-#     term1 = rule1.split("->")[1].strip()
-#     for rule2 in text:
-#         for var in params:
-#             variables[var.strip() + "1"] = []
-#             variables[var.strip() + "2"] = []
-#             eqVars[var.strip() + "1"] = []
-#             eqVars[var.strip() + "2"] = []
-#
-#         rule2 = rule2.strip()
-#         term2 = rule2.split("->")[0].strip()
-#         resString = ""
-#         unificator = unif(term1, term2)
-#         print(unificator)
