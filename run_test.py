@@ -214,7 +214,7 @@ def parse(path):
         if len(lines) < 2:
             write("Error")
 
-        params_r = r'\[(([a-zA-Z]+)(,[a-zA-Z]*)*)?\]'
+        params_r = r'\[(([a-zA-Z]+)(,[a-zA-Z]+)*)?\]'
         if not re.fullmatch(params_r, lines[0].strip()):
             write("Error in first line")
         params = lines[0].strip()[1:-1].split(",")
@@ -361,3 +361,20 @@ else:
 
 
 
+
+
+# for rule1 in text:
+#     rule1 = rule1.strip()
+#     term1 = rule1.split("->")[1].strip()
+#     for rule2 in text:
+#         for var in params:
+#             variables[var.strip() + "1"] = []
+#             variables[var.strip() + "2"] = []
+#             eqVars[var.strip() + "1"] = []
+#             eqVars[var.strip() + "2"] = []
+#
+#         rule2 = rule2.strip()
+#         term2 = rule2.split("->")[0].strip()
+#         resString = ""
+#         unificator = unif(term1, term2)
+#         print(unificator)
